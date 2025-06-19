@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hackverse 3.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6C4EE3;
+      --bg: #f3f1fb;
+      --text: #1c1c1c;
+      --white: #fff;
+      --card: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    nav {
+      background: var(--white);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+     .hero {
+      background: linear-gradient(to right, rgba(108, 78, 227, 0.8), rgba(0, 0, 0, 0.6)),
+      url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      color: var(--white);
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 70vh;
+      transition: background 1s ease-in;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      animation: fadeIn 1.2s ease forwards;
+    }
+    .hero p {
+      margin: 1rem 0;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    .btn {
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      background: var(--card);
+      margin: 2rem;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    form input, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    form button {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .sponsors img, .speakers img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: 0.5rem;
+      border-radius: 8px;
+      background-color: #eee;
+    }
+    .speakers, .sponsors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 1rem;
+      background-color: #eee;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-question::after {
+  content: '▼';
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+  transform: rotate(180deg); /* Points up when open */
+}
+    .faq-answer {
+      padding: 1rem;
+      display: none;
+      background-color: #fdfdfd;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background-color: var(--white);
+      color: #777;
+    }
+    .speakers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.speaker-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.speaker-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.speaker-card h3 {
+  margin: 0.5rem 0 0.25rem;
+  color: #2c1458;
+}
+
+.speaker-card .title {
+  font-weight: bold;
+  color: #6C4EE3;
+  margin-bottom: 0.5rem;
+}
+
+.speaker-card p {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">HACKVerse</div>
+    <ul class="nav-links">
+      <li><a href="#event">Event</a></li>
+      <li><a href="#register">Register</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#sponsors">Sponsors</a></li>
+      <li><a href="#speakers">Speakers</a></li>
+      <li><a href="#faqs">FAQs</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>HACKVERSE 3.0</h1>
+    <p>Join our hackathon and showcase your skills in a 24-hour coding competition</p>
+    <a class="btn" href="#register">Register Now</a>
+    <p>June 22-23 2025 | MAC BHIDHOLI</p>
+  </section>
+
+  <div class="grid-two">
+    <section class="section" id="event">
+      <h2>Event Details</h2>
+      <p><strong>Description:</strong> Hackverse is a 24-hour innovation marathon where developers, designers, and thinkers solve real-world problems.</p>
+      <h4>Schedule</h4>
+      <ul>
+        <li>Opening Ceremony</li>
+        <li>Team Formation</li>
+        <li>Hacking Begins</li>
+        <li>Submission & Judging</li>
+        <li>Closing & Awards</li>
+      </ul>
+      <h4>Rules</h4>
+      <ul>
+        <li>Original Work</li>
+        <li>No plagiarism</li>
+        <li>Respect fellow hackers</li>
+      </ul>
+      <h4>Prizes</h4>
+      <ul>
+        <li> Cash Prizes=₹20,000</li>
+        <li>Internships</li>
+        <li>Startup funding opportunities</li>
+      </ul>
+    </section>
+
+    <section class="section" id="register">
+      <h3>Registeration</h3>
+    <form id="contact-form" class="contact-form">
+        <input type="hidden" name="access_key" value="91e80c46-2f13-45bc-8289-dca682f225c5">
+        <div class="subscribe-box">
+            <input type="text" name="name" placeholder="Enter Your Name" required>
+        </div>
+        <div class="subscribe-box">
+            <input type="email" name="email" placeholder="Enter Your Email" required>
+        </div>
+        <div class="subscribe-box">
+            <input type="tel" name="telephone" placeholder="Phone Number" required>
+        </div>
+        <div class="subscribe-box">
+            <input type="branch" name="branch" placeholder="Branch" required>
+        </div>
+        <div class="subscribe-box">
+            <input type="year" name="year" placeholder="Year" required>
+        </div>
+        <div class="subscribe-box">
+            <input type="roll number" name="roll number" placeholder="Roll Number" required>
+        </div>
+        <div class="subscribe-box">
+            <button type="submit">SUBMIT</button>
+        </div>
+    </form>
+    <div id="form-message" style="display: none; color: green; margin-top: 10px; font-family: 'Poppins', sans-serif;">
+        ✅ Thank you! Your message has been sent successfully.
+    </div>
+    </section>
+  </div>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const formData = new FormData(form);
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    form.reset();
+                    form.style.display = 'none'; 
+                    formMessage.style.display = 'block'; 
+                } else {
+                    alert('Submission failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('There was an error submitting the form.');
+            });
+        });
+    });
+    </script>
+
+
+
+  <div class="grid-two">
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <p><strong>📞</strong> +91-9876543210</p>
+      <p><strong>📧</strong> upescsi@edu.upes.ac.in</p>
+      <p><strong>📍</strong> MAC AUDI BHIDHOLI UPES </p>
+      <p><strong>🌐</strong> Follow us: Instagram | LinkedIn | Discord</p>
+    </section>
+
+  <section class="section" id="sponsors">
+  <h2>Sponsors</h2>
+  <div class="sponsors">
+    <img src="sponser .jpg" alt="Wolfram Language Sponsor">
+    <img src="sponser 2 .jpg" alt="Koders Sponsor">
+    <img src="sponser 3.jpg" alt="Taskade Sponsor">
+  </div>
+</section>
+  </div>
+
+  <section class="section" id="speakers">
+  <h2>Speakers & Mentors</h2>
+  <div class="speakers-grid">
+    <div class="speaker-card">
+      <h3>Dakshi Aggarwal</h3>
+      <p class="title">Associate TRC, RSM US LLP</p>
+      <p>Dedicated leader with impactful event experience and committee headship at CSI, excelling in responsibility and vision.</p>
+    </div>
+    <div class="speaker-card">
+      <h3>Ishika Punhani</h3>
+      <p class="title">onsultant 2, Technology Audit, Protiviti India Member Firm</p>
+      <p>Editorial enthusiast turned Board Director, fostering growth, collaboration, and creativity across diverse domains.</p>
+    </div>
+    <div class="speaker-card">
+      <h3>Mehak Aggarwal</h3>
+      <p class="title">BA3, Technology Graduate Developer, Barclays Bank PLC</p>
+      <p>Transformative leader, passionate writer, and resilient director shaping CSI’s vision with excellence and empathy.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section style="margin-top: 50px; margin-left: 145px;">
+  <h2 style="font-size: 36px;line-height: 44px;color: rgb(15, 15, 15);text-decoration-line: none;text-transform: none;font-weight: 600;text-align: left;margin-left: 450px; color:#6C4EE3">HALL OF HACKS</h2>
+  <div style="position: relative;">
+    <button onclick="scrollContentLeft('scroll-container-1')" style="width: 50px;height: 50px;background-color: white;border-radius: 50%; display: flex;align-items: center;justify-content: center;box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);border: none;cursor: pointer;font-size: 22px;font-weight: 600;color: black;position: absolute; left: -10px; top: 45%; transform: translateY(-50%);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
+        <path d="M10 7L15 12L10 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <button onclick="scrollContentRight('scroll-container-1')" style="width: 50px;height: 50px;background-color: white;border-radius: 50%;display: flex; align-items: center;justify-content: center;box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);border: none;cursor: pointer;font-size: 22px;font-weight: 600; color: black;position: absolute; right: 120px; top: 45%; transform: translateY(-50%);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 7L15 12L10 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div id="scroll-container-1" class="scroll-container" style="display: flex; flex-direction: row; height: 630px;width: 1250px; margin-top: 50px;column-gap: 25px;overflow-x: auto;scroll-behavior: smooth;-ms-overflow-style: none;scrollbar-width: none;white-space: nowrap;padding: 10px;">
+      <div><img src="1.jpg" height="520px" width="390px"></div>
+      <div><img src="Hackathon.jpg" height="520px" width="390px"></div>
+      <div><img src="3.jpg" height="520px" width="390px"></div>
+      <div><img src="4.jpg" height="520px" width="390px"></div>
+      <div><img src="5.jpg" height="520px" width="390px"></div>
+      <div><img src="Hackathon_BHS_MindBlown_FINAL.jpg" height="520px" width="390px"></div>
+    </div>
+  </div>
+</section>
+<!-- first section ends -->
+
+
+
+
+
+<!-- script for button functioning -->
+<script>
+  function scrollContentLeft(containerId) {
+    let container = document.getElementById(containerId);
+    if (container) {
+      container.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+  }
+
+  function scrollContentRight(containerId) {
+    let container = document.getElementById(containerId);
+    if (container) {
+      container.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  }
+</script>
+<!-- script ends -->
+
+  <section class="section" id="faqs">
+    <h2>FAQs</h2>
+    <div class="faq-item">
+      <div class="faq-question">What is the registration deadline?</div>
+      <div class="faq-answer">Registration closes on May 10, 2024.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I participate alone?</div>
+      <div class="faq-answer">Yes, you can participate individually or in teams of up to 4.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Is there a fee?</div>
+      <div class="faq-answer">No, it's completely free!</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Will I get a certificate?</div>
+      <div class="faq-answer">Yes, all participants receive certificates.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Are meals provided?</div>
+      <div class="faq-answer">Yes, food and drinks are included for all participants.</div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Hackverse 3.0 | All rights reserved
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(item => {
+      item.addEventListener('click', () => {
+        item.parentElement.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
